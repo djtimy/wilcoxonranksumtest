@@ -36,20 +36,26 @@ setBrankTotal = sum(setBranks)
 
 if setAsize <= setBsize:
 	rankSum = setArankTotal
+	m = setAsize
+	n = setBsize
 else: 
 	rankSum = setBrankTotal
+	n = setAsize
+	m = setBsize
 
 
+halfMsum = 0.5 * m * (m + n + 1)
+twelthMNsum = halfMsum * n / 6
 
-zNumerator = rankSum - (0.5 * setAsize * (setAsize + setBsize + 1))
+zNumerator = rankSum - halfMsum
 
 if zNumerator >= 0:
-	zNumerator += 0.5
-else:
 	zNumerator -= 0.5
+else:
+	zNumerator += 0.5
 
 
-zDenominator = ((1.0/12) * setAsize * setBsize * (setAsize + setBsize + 1)) ** 0.5
+zDenominator = ((1.0/6) * halfMsum * n) ** 0.5
 
 z = zNumerator / zDenominator
 
@@ -67,7 +73,9 @@ print "Set B rank total : ", setBrankTotal
 
 print "Rank Sum (Rm) : ", rankSum 
 
+print "halfMsum : ", halfMsum
+print "twelthMNsum : ", twelthMNsum
 print "Z numerator : ", zNumerator
-print "Z zDenominator : ", zDenominator 
+print "Z denominator : ", zDenominator 
 print "Z : ", z
 
